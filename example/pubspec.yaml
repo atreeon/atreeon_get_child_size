@@ -11,6 +11,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   atreeon_get_child_size:
     path: ../
+  google_fonts: ^3.0.1
+  atreeon_menu_flutter: ^0.1.0
 
 dev_dependencies:
   flutter_test:

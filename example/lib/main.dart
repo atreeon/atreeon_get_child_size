@@ -1,46 +1,40 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: use_key_in_widget_constructors
 
-import 'package:atreeon_get_child_size/atreeon_get_child_size.dart';
+import 'package:atreeon_menu_flutter/menuItem.dart';
+import 'package:atreeon_menu_flutter/menuSand.dart';
+import 'package:example/GetChildSize_Demo.dart';
+import 'package:example/ScreenSize_Demo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: GetChildSize_Demo(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(),
+      );
 }
 
-class GetChildSize_Demo extends StatefulWidget {
-  const GetChildSize_Demo({super.key});
-
-  @override
-  _GetChildSize_DemoState createState() => _GetChildSize_DemoState();
-}
-
-class _GetChildSize_DemoState extends State<GetChildSize_Demo> {
-  var size = const Size(10, 10);
-
-  @override
+class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("outside of widget:$size"),
-        Expanded(
-          child: GetChildSize(
-            child: Text("inside widget:$size"),
-            onChange: (x) => //
-                setState(() => size = x),
-          ),
-        )
-      ],
+    return SafeArea(
+      child: MenuSand(
+        "get_child_size demos",
+        [
+          MenuItemAdi("GetChildSize_Demo", () => const GetChildSize_Demo()),
+          MenuItemAdi("ScreenSizeDemo", () =>  const ScreenSizeDemo()),
+        ],
+      ),
     );
   }
 }

@@ -1,13 +1,16 @@
 # atreeon_get_child_size
 
-This code is from 
-
 A widget that returns the size of the child object.
 The [onChange] callback will run everytime the widget's size has changed.
 
-**Waring! will result in multiple passes from the layout algorithm if you rebuild a widget from onChange; it will affect performance**
+<p align="center">
+<img alt="atreeon_get_child_size example" src="https://github.com/atreeon/atreeon_get_child_size/raw/master/resources/GetChildSize_example.gif">
+</p>
 
-This is a fundamental restriction in how widgets are built -> constraints go down & sizes go up -> if you change the constraint above, you must change the size below
+**Waring! will result in multiple passes from the layout algorithm if you rebuild a widget from onChange; it will affect performance.**
+This can happen even when just writing out to text the screen size.  For example if you have more go from a '10' in the output to a '100', that can affect the size of a widget.  Use with care.
+
+This is a fundamental restriction in how widgets are built -> constraints go down & sizes go up -> if the constraints change the size could change.
 
 ## Example
 
@@ -39,7 +42,12 @@ class _GetChildSize_DemoState extends State<GetChildSize_Demo> {
 }
 ```
 
-### Discussion on code & implementation
+## Features
+* returns the size of the child object and runs a callback
+
+### Other Info
+
+#### Discussion on code & implementation
 
 https://github.com/flutter/flutter/issues/14488
 
